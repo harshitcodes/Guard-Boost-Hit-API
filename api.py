@@ -33,6 +33,7 @@ class GuardBoostHitApi(remote.Service):
                       name='create_user',
                       http_method='POST')
     def create_user(self, request):
+        """Mehtod to create new users in the datastore"""
         if User.query(User.username == request.username).get():
             raise endpoints.ConflictException('This username is already taken.')
         user = User(username=request.username,
@@ -99,6 +100,7 @@ class GuardBoostHitApi(remote.Service):
                       name='quit_game',
                       http_method='PUT')
     def quit_game(self, request):
+        """method to quit the game"""
         game = get_by_urlsafe(request.urlsafe_game_key, Game)
         if game:
             if game.cancelled:

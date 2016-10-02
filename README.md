@@ -28,84 +28,84 @@ This game can be played by using the ```urlsafe_game_key```.
 * utils.py: Helper function for retrieving ndb.Models by urlsafe Key string.
 
 ## Endpoints Included:
-* create_user
+* ####create_user
   * Path: 'user'
   * Method: ```POST```
   * Parameters: ```username```, ```email```
   * Returns: Message confirming creation of the User.
   * Description: Creates a new ```User```. ```username``` provided must be unique. Will raise a ConflictException if a  User with that user_name already exists.
 
-* get_user
+* ####get_user
   * Path: 'get_user'
   * Method: ```GET```
   * Parameters: ```username```
   * Returns: ```UserForm``` with all the entered info in respective fields as per the username entered.
   * Description: Returns data about the user corresponding to the username found in the game datastore.
 
-* get_users
+* ####get_users
   * Path: 'users'
   * Method: ```GET```
   * Parameters: None
   * Returns: ```UserForm``` object of each and every user in the game datastore.
   * Description: Returns data about each user found in the game datastore.
 
-* new_game
+* ####new_game
   * Path: 'game'
   * Method: ```POST```
   * Parameters: ```username```
   * Returns: ```GameForm``` with the all the initiated status fields and data.
   * Description: Creates a new game with the corresponding username.
 
-* get_game
+* ####get_game
   * Path: 'game/{urlsafe_game_key}'
   * Method: ```GET```
   * Parameters: ```urlsafe_game_key```
   * Returns: ```GameForm``` with the game state and data.
   * Description:  Returns the current game state and data. Will raise a ```NotFoundException``` if a game is not found corresponding to the key provided.
 
-* quit_game
+* ####quit_game
   * Path: 'game/{urlsafe_game_key}/quit'
   * Method: ```PUT```
   * Paramters: ```urlsafe_game_key```
   * Returns: ```GameForm``` with the cancelled field active and data.
   * Description: Returns the current game state and data of newly quit game. Will raise exceptions if there is an anomaly, ```conflicts``` or ```NotFound```
 
-* make_move
+* ####make_move
   * Path: 'game/{urlsafe_game_key}'
   * Method: ```PUT```
   * Paramters: ```urlsafe_game_key```, ```play```
   * Returns: ```GameForm``` with the updated status and data.
   * Description: Returns the current game state and data of newly move in the game. Will raise exceptions if there is an anomaly, ```conflicts``` or ```NotFound```
 
-* get_games
+* ####get_games
   *Path: 'games'
   * Method: ```GET```
   * Parameters: None
   * Returns: ```GameForms``` returning all the games.
   * Description: Returns all games in the database as GameForm objects, ordered by most recent game date.
 
-* get_user_games
+* ####get_user_games
   * Path: 'user_games'
   * Method: ```GET```
   * Parameters: ```username```
   * Returns: ```GameForms``` objects of the corresponding username.
   * Description: Returns all active (unfinished) games as ```GameForm``` objects for the specified user.
 
-* get_high_scores
+* ####get_high_scores
   * Path: 'scores'
   * Method: ```GET```
   * Parameters: None
   * Returns: ```UserScoreForms``` for all the ```UserScoreForm```
   * Description: Returns all the UserScoreForm in the game datastore.
 
-* get_user_rankings
+* ####get_user_rankings
   * Path: 'user_rankings'
   * Method: ```GET```
   * Parameters: None
   * Returns: ```UserRankForms``` for all the ```UserRankForm```
   * Description: Returns all the UserRankForm in the game datastore.
 
-* get_game_history
+* ####get_game_history
   * Path: 'game/{urlsafe_game_key}/history'
   * Method: ```GET```
   * Parameters: None
@@ -114,51 +114,51 @@ This game can be played by using the ```urlsafe_game_key```.
 
 ## Models Included
 
-* User
+*####User
   * Stores unique username and email address.
 
-* Game
+* ####Game
   * Stores unique game states. Associated with User model via KeyProperty.
 
-* Move
+* ####Move
   * Stores the information about the move played in the game by the user and ai player.
 
 ## Forms Included:
 
-* GameForm
+* ####GameForm
   * Representation of a Game's state (urlsafe_key, user_play, ai_play, game_over flag, message, username, won, cancelled(quit)).
 
-* Game Forms
+* ####Game Forms
   * Multiple game forms for giving all the games.
 
-* NewGameForm
+* ####NewGameForm
   * Used to create a new game (username)
 
-* GameHistoryForm
+* ####GameHistoryForm
   * Status fields for the Game's history of moves (moves).
 
-* MakePlayForm
+* ####MakePlayForm
   * play Stringfield for making a move(play).
 
-* UserForm
+* ####UserForm
   * Representation of a User (username, email).
 
-* UserForms
+* ####UserForms
   * Multiple UserForm container.
 
-* UserRankForm
+* ####UserRankForm
   * Representation of a User with ranking (username, total_games, wins, win_ratio)
 
-* UserRankingForms
+* ####UserRankingForms
   * Multiple UserRankingForm container.
 
-* UserScoreForm
+* ####UserScoreForm
   * Representation of a User with score (win_streak) information (username, score)
 
-* UserScoreForms
+* ####UserScoreForms
   * Multiple UserScoreForm container.
 
-* StringMessage
+* ####StringMessage
   * General String container for messages.
 
 
