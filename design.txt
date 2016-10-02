@@ -1,0 +1,34 @@
+Question:
+What additional properties did you add to your models and why?
+
+Answer:
+User model:
+    - total_games: Added to keep track of total games played by the user
+    - wins: Added to keep track of number of wins by the user
+    - win_ratio: Added to keep track of win ratio of the user based on the number of games won divided by total number of games played.
+    - win_streak: Added to keep track of the user's "score" in the form of win streak vs the AI player
+
+Game model:
+    - play: this is the field which takes the user input and acknowledges what move was played by the user.
+    - ai_play: this field acknowledges the move played by the AI player
+    - won: Added to keep track of whether or not the user won
+    - match_date: Added to keep track of the timestamp of game's date, for ordering and win_streak purposes
+    - message: Added to keep track of current message to return with the game data
+    - cancelled: Added to keep track of whether or not the game was cancelled
+    - moves: Added to keep track of moves made in the game for use in game history endpoint
+
+Move model (new):
+    - play: this is the field which takes the user input and acknowledges what move was played by the user.
+    - ai_play: this field acknowledges the move played by the AI player
+    - result: Added to keep track of the result message for the move (e.g. user won, user lost, or a tie)
+
+Question:
+What were some of the trade-offs or struggles you faced when implementing the new game logic?
+
+Answer:
+Trade-offs faced:
+    - When I started designing the game structure and logic, I didn't have these many forms in my api, but with the requirement to get things done. I had to implement form for each and every logic I wanted to implement for instance: there are plural_name forms which are used for the representation multiple instances of users or games.
+
+Struggles:
+    - I have been developing in Python for quite some time now but learning and getting along appengine, google cloud endpoints was quite a bit of task for me.
+    - I faced some issues with the developer console and the versioning of my api while deploying the app on appengine. But the discuusion forum, stackoverflow, udacity webcasts helped out.

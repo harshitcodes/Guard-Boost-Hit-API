@@ -136,7 +136,7 @@ class GuardBoostHitApi(remote.Service):
             return game.to_form(msg)
 
         if user_play == ai_play:
-            msg = "Same strategy!! You are going down next!!"
+            msg = "That's a TIE"
             game.moves.append(Move(user_play=user_play, ai_play=ai_play,
                                    result=msg))
             game.put()
@@ -149,19 +149,19 @@ class GuardBoostHitApi(remote.Service):
         if user_play == 'guard' and ai_play == 'boost' or\
            user_play == 'boost' and ai_play == 'hit' or\
            user_play == 'hit' and ai_play == 'guard':
-            msg = "Sorry! The AI player's {} beats your {}".format(ai_play.title(), user_play.title())
+            msg = "You Lost! The AI player's {} beats your {}".format(ai_play.title(), user_play.title())
             game.message = msg
             game.moves.append(Move(user_play=user_play, ai_play=ai_play, result=msg))
             game.put()
-            game.quit_game(True)
+            game.quit_game(won=False)
             return game.to_form(msg)
         else:
-            msg = """Congrats!, your move to {} beats mine to {}!"""\
+            msg = """You Won, your move to {} beats mine to {}!"""\
                 .format(user_play.title(), ai_play.title())
             game.message = msg
             game.moves.append(Move(user_play=user_play, ai_play=ai_play, result=msg))
             game.put()
-            game.quit_game(False)
+            game.quit_game(won=True)
             return game.to_form(msg)
 
     # getting multiple instances of games
@@ -223,15 +223,13 @@ class GuardBoostHitApi(remote.Service):
         """listing the user ranks based on the win ratio of the user"""
         all_users = User.query()
         for user in all_users:
-            total_games = Game.query()\
-                        .filter(Game.game_over == True)\
-                        .filter(Game.cancelled == False)\
-                        .filter(Game.user == user.key).count()
-            wins = Game.query()\
-                .filter(Game.game_over == True)\
-                .filter(Game.cancelled == False)\
-                .filter(Game.user == user.key)\
-                .filter(Game.won == True).count()
+            total_games = Game.query().filter(Game.game_over == True,
+                                              Game.cancelled == False,
+                                              Game.user == user.key).count()
+            wins = Game.query().filter(Game.game_over == True,
+                                       Game.cancelled == False,
+                                       Game.user == user.key,
+                                       Game.won == True).count()
             win_ratio = float(wins/total_games) if total_games > 0 else 0.00
             user.wins = wins
             user.total_games = total_games

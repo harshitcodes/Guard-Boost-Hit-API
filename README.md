@@ -16,7 +16,17 @@ This is a war game so,
   * hit beats boost
   * boost beats guard
   * guard beats hit
-This game can be played by using the ```urlsafe_game_key```.
+
+* This game can be played by using the ```urlsafe_game_key``` which you get after creating a new game.
+* After starting a new game, you can make a move by `make_move` endpoint.
+* You can either enter ```Guard```, ```Boost``` and ```Hit``` in the `play` string field.
+* Based on the above rules, if you would lose, the game would end with a `score` 0.
+* If you win, the game would end with a `score` 1.
+* If it is a tie, you can play on to get the result.
+* You can get all the game history using the `get_game_history` method by entering the `urlsafe_game_key`.
+* You can get the score list which is the `win_streak` of the user based on the number of games he had won so far which also gives us the `win_streak` of the user and helps in calculating the `win_ratio` and hence the rank.
+* The ranks of all the users is also shown based on the `win_ratio` using the `get_user_ranking` method.
+
 
 ## Files included:
 * api.py: Contains endpoints and game playing logic.
