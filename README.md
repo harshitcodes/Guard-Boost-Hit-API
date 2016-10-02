@@ -1,4 +1,4 @@
-# Guard-Boost-Hit-API
+# Dragon-Ball-Z-API
 Dragon Ball Z Game google cloud endpoints API
 In this project I've used the udacity's scalable apps with python to develop my own game! This is an API with endpoints which allows anyone to develop a front-end for this game. Since I ain't required to write a front-end I have used APIs explorer to test my API.
 
