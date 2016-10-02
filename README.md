@@ -7,7 +7,7 @@ In this project I've used the udacity's scalable apps with python to develop my 
 
 2. Run the app with the devserver using dev_appserver.py DIR, and ensure it's running by visiting the API Explorer - by default localhost:8080/_ah/api/explorer.
 
-3. (Optional) Generate your client library(ies) with the endpoints tool. Deploy your application.
+3. The deployed Dragon Ball Z API can be accessed via [Dragon Ball Z API](https://v1-dot-design-a-game-api.appspot.com/_ah/api/explorer)
 
 ## Game Description:
 
