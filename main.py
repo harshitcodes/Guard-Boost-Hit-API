@@ -17,7 +17,7 @@ class MainHandler(webapp2.RequestHandler):
             </head><html><body><div class="row"><div class="columns">\
             <h1>Dragon Ball Z API</h1>\
             <p>Nothing to see here, folks. You need to go to the\
-            <a href="design-a-game-api.appspot.com/_ah/api/explorer/">Dragon Ball Z API</a>.</p>\
+            <a href="v1-dot-    design-a-game-api.appspot.com/_ah/api/explorer/">Dragon Ball Z API</a>.</p>\
             </div></div></body></html>""")
 
 

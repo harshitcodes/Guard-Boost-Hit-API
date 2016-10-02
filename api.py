@@ -95,7 +95,7 @@ class GuardBoostHitApi(remote.Service):
     # cancel game
     @endpoints.method(request_message=CANCEL_GAME_REQUEST,
                       response_message=GameForm,
-                      path='game/{urlsafe_game_key}/cancel',
+                      path='game/{urlsafe_game_key}/quit',
                       name='quit_game',
                       http_method='PUT')
     def quit_game(self, request):
@@ -188,10 +188,10 @@ class GuardBoostHitApi(remote.Service):
 
     # scorelist updates of the users
     @endpoints.method(response_message=UserScoreForms,
-                      path='high_scores',
-                      name='get_high_scores',
+                      path='scores',
+                      name='get_scores',
                       http_method='GET')
-    def get_high_scores(self, request):
+    def get_scores(self, request):
         """returns all the high scores of the users in descending order"""
         all_users = User.query()
         for user in all_users:
@@ -215,9 +215,9 @@ class GuardBoostHitApi(remote.Service):
         # user standings/ranking in the game
     @endpoints.method(response_message=UserRankForms,
                       path='user_rankings',
-                      name='user_ranking',
+                      name='get_user_ranking',
                       http_method='GET')
-    def user_ranking(self, request):
+    def get_user_ranking(self, request):
         """listing the user ranks based on the win ratio of the user"""
         all_users = User.query()
         for user in all_users:
